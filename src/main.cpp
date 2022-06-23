@@ -1,13 +1,29 @@
 #include <iostream>
 #include "assembler.cpp"
+#include "utils/convert.cpp"
 
 using namespace std;
 
-int main(){
-    Assembler assembler("/home/joesty/Comp_Assembler/input.txt");
+int main(int argc, char **argv){
+    //string input = "/home/joesty/Comp_Assembler/input.txt"; 
+    string input = "/home/joesty/Comp_Assembler/fib.txt"; 
+    string output = "./utils/output.txt";
+    string in;
+    string out;
+    vector<string> args;
+    if (argc != 3){
+        cout<<"only need 2 params";
+    }
+    else{
+        args.push_back(argv[1]);
+        args.push_back(argv[2]);
+        input = convertArgvToString(args[0]);
+        output = convertArgvToString(args[1]);
+        //pair<string, string> io(convertArgvToString(argc, args));
+        //out = io.second;
+        //cout<<out<<endl;
+    }
+    Assembler assembler(input, output);
     //assembler.token();
-    assembler.firstPass();
-    cout<<endl<<"Print ST"<<endl;
-    assembler.printST();
-    assembler.secondPass("/home/joesty/Comp_Assembler/input.txt");
+    assembler.run();
 }
