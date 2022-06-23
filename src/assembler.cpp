@@ -50,6 +50,7 @@ class Assembler{
     
     public:
     Assembler(string in, string out){
+        initMemory();
         input = in;
         output = out;
         pc = ac = lc = pn = 0;
