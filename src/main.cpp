@@ -11,10 +11,7 @@ int main(int argc, char **argv){
     string in;
     string out;
     vector<string> args;
-    if (argc != 3){
-        cout<<"only need 2 params";
-    }
-    else{
+    if(argc > 2){
         args.push_back(argv[1]);
         args.push_back(argv[2]);
         input = convertArgvToString(args[0]);
