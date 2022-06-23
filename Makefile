@@ -8,5 +8,8 @@ LDLIBS += -lm
 all: 
 	g++ src/main.cpp -o assembler
 
+execute:
+	./assembler ./input.txt ./output.txt
+
 clean:
 	rm -f assembler
