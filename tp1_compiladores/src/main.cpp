@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char **argv){
     //string input = "/home/joesty/Comp_Assembler/input.txt"; 
-    string input = "/home/joesty/Comp_Assembler/fib.txt"; 
+    string input = "/home/joesty/Comp_Assembler/input.txt"; 
     string output = "./utils/output.txt";
     string in;
     string out;

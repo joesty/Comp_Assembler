@@ -90,52 +90,6 @@ class Assembler{
         font.closeFile();
         //cout<<endl;
     }
-    void doOperations(string op, int m){
-        if (op == "LOAD"){
-            ac = memory[m+pc];
-        }else if (op == "STORE"){
-            memory[m+pc] = ac;
-        }else if (op == "ADD"){
-            ac = ac+memory[m+pc];
-        }else if (op == "SUB"){
-            ac = ac-memory[m+pc];
-        }else if (op == "JMP"){
-            pc = m+pc;
-        }else if (op == "JPG"){
-            if(ac > 0){
-                pc = m+pc;
-            }
-        }else if (op == "JPL"){
-            if(ac < 0){
-                pc = m+pc;
-            }
-        }else if (op == "JPE"){
-            if(ac == 0){
-                pc = m+pc;
-            }
-        }else if (op == "JPNE"){
-            if(ac != 0){
-                pc = m+pc;
-            }
-        }else if (op == "PUSH"){
-            sp = sp-1;
-            memory[sp] = memory[m+pc];
-        }else if (op == "POP"){
-            memory[m+pc] = memory[sp];
-            sp = sp+1;
-        }else if (op == "READ"){
-            memory[m+pc] = memory[m+pc];
-        }else if (op == "WRITE"){
-            memory[m+pc] = memory[m+pc];
-        }else if (op == "CALL"){
-            sp = sp-1;
-            memory[sp] = pc;
-            pc = m+pc;
-        }else if (op == "RET"){
-            pc = memory[sp];
-            sp = sp+1;
-        }
-    }
     void secondPass(){
         font.setFile(input);
         lc = 0;
@@ -162,7 +116,6 @@ class Assembler{
                 string operandValue = to_string(operandInt-lc);
                 //cout<<operandValue<<" ";
                 translation.push_back(operandValue);
-                doOperations(operation, operandInt-lc);
                 pn+=1;
             }
             else{
@@ -174,14 +127,12 @@ class Assembler{
                     if (operand != "empty"){
                         //cout<<operation<<endl;
                         //cout<<operand<<endl;
-                        doOperations(operation, stoi(operand));
                     }
                 }else{
                     if (operand != "empty"){
                         //cout<<stoi(operand)<<" ";
-                        translation.push_back(operand);
+                        translation.push_back("0");
                         //cout<<operand<<endl;
-                        doOperations(operation, (stoi(operand)+1)*token.second);
                         pn+=1;
                     }
                 }
