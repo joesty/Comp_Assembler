@@ -23,7 +23,35 @@ Class C inherits a {
 Class D inherts A {
 };
 
-(* error:  closing brace is missing *)
-Class E inherits A {
-;
+(* error: TYPEID errado *)
+class P {
+    f(): intt { 1 };
+};
 
+(* error: let sem OBJECTID  *)
+class Q{
+    f(): Int {
+        let in {
+            x <- x + 3;
+        }
+    } 
+}
+
+(* error: operador errado *)
+class Q{
+    f(): Int {
+        let x : Int <- 3 in
+            x <- x $ 3;
+    }
+}
+
+(* error: expressão sem expressão *)
+class R{
+    f(): Int {
+        let x:Int <- 3 in ;
+    }
+}
+(* error: faltando TYPEID *)
+class P {
+    f(): { 1 };
+};
